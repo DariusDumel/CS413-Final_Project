@@ -15,16 +15,16 @@ create() {
     new Enemy(this, 0, -100, 2);
     new Enemy(this, config.width, -500, 3);
     new Enemy(this, config.width / 2, -1000, 1);
-    new Enemy(this, config.width / 2 -234, -1000, 1);
-    new Enemy(this, config.width / 2 + 234, -1000, 1);
-    new Enemy(this, config.width / 2 - 500, -1000, 1);
+    new Enemy(this, config.width / 2 -50, -1000, 1);
+    new Enemy(this, config.width / 2 + 20, -1100, 1);
+    new Enemy(this, config.width / 2 - 10, -1040, 1);
     new Enemy(this, 500, -1000, 2);
     new Enemy(this, 23, -1000, 2);
     new Enemy(this, 60, -1000, 2);
-    new Enemy(this, 123, -1000, 1);
-    new Enemy(this, 250, -1000, 1);
-    new Enemy(this, 200, -1000, 3);
-    new Enemy(this, 100, -1000, 3);
+    new Enemy(this, 123, -1123, 1);
+    new Enemy(this, 250, -1021, 1);
+    new Enemy(this, 200, -1645, 2);
+    new Enemy(this, 100, -1623, 2);
     new Enemy(this, config.width, -1500, 3);
 
     //setting up groups
