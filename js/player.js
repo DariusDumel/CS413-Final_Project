@@ -2,8 +2,9 @@ class Player extends Phaser.GameObjects.Sprite{
 
     constructor(scene){
         
-        super(scene, config.width/2, config.height- 20, "player");
+        super(scene, config.width/2, config.height- 20, "player1");
 
+        this.play("player_anim")
         this.health = 100;
         this.speed = gameSettings.gameSpeed*150;
         this.controls = scene.input.keyboard.addKeys('W,A,S,D,S,SPACE');

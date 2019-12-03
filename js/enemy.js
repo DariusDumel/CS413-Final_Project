@@ -15,7 +15,7 @@ class Enemy extends Phaser.GameObjects.Sprite{
 
             case 3:
                 super(scene ,x, y, 'ship3')
-                this.health = 50;
+                this.health = 10;
                 this.speedMod = 2;
                 break;
                 
@@ -35,8 +35,11 @@ class Enemy extends Phaser.GameObjects.Sprite{
     }
 
     update(){
-
-    this.moveEnemy()
+        this.moveEnemy()
+        var x = Math.random();
+        if(x > .5 && x < .52){
+            this.shootBeam();
+        }
     }
 
     moveEnemy() {
@@ -67,8 +70,13 @@ class Enemy extends Phaser.GameObjects.Sprite{
         this.x = this.startX;
     }
 
-    destroyEnemy() {
-        //add explosion animation
-        this.destroy();
+    shootBeam() {
+        var beam = new EnemyBeam(this.scene, this)
+    }
+    getHit() {
+        this.health -= 10;
+        if(this.health <= 0){
+            this.destroy();
+        }
     }
 }
