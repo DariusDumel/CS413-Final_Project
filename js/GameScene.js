@@ -31,15 +31,6 @@ create() {
     this.projectiles = this.physics.add.group();
     this.powerUps = this.physics.add.group();
 
-    for(var i = 0; i < gameSettings.maxPowerUps; i++){
-        var powerUp = this.physics.add.sprite(16,16, "powerUp");
-        this.powerUps.add(powerUp);
-        powerUp.setRandomPosition(0,0, config.width, config.height);
-        powerUp.setVelocity(gameSettings.gameSpeed*50, gameSettings.gameSpeed*50);
-        powerUp.setCollideWorldBounds(true);
-        powerUp.setBounce(1);
-    }
-
     this.player = new Player(this);
 
     this.physics.add.overlap(this.activeEnemies, this.projectiles,
@@ -82,9 +73,10 @@ update() {
     this.hp.setText(this.player.health)
 }
 
-hitEnemy(Enemy, beam){
+hitEnemy(enemy, beam){
     beam.destroy();
-    Enemy.destroy();
+    enemy.destroy();
+    var powerUp = new powerUp(this, enemy)
 }
 
 }
