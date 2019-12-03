@@ -10,7 +10,7 @@ var config = {
             debug: false
         }
     },
-    scene: [GameScene]
+    scene: [LoadScene, GameScene]
 };
 
 var gameSettings = {
