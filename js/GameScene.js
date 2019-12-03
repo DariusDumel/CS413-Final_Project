@@ -23,13 +23,12 @@ create() {
     });
     
     this.physics.world.setBoundsCollision();
-    this.activeEnemies = this.add.group();
+    this.activeEnemies = this.physics.add.group();
     this.ship1 = new Enemy(this, config.width / 2, -50, 1);
     this.ship2 = new Enemy(this, 0, -100, 2);
     this.ship3 = new Enemy(this, config.width, -500, 3);
     
-    this.physics.add.overlap(this.activeEnemies, this.projectiles, hitEnemy, null, this)
-    this.projectiles = this.add.group();
+    this.projectiles = this.physics.add.group();
     this.powerUps = this.physics.add.group();
 
     for(var i = 0; i < gameSettings.maxPowerUps; i++){
@@ -42,6 +41,26 @@ create() {
     }
 
     this.player = new Player(this);
+
+    this.physics.add.overlap(this.activeEnemies, this.projectiles,
+        function (enemy, beam) {
+            this.projectiles.remove(beam, true, true);
+            this.activeEnemies.remove(enemy, true, true);
+        }
+        , null, this);
+
+    this.physics.add.overlap(this.player, this.activeEnemies,
+        function (player, enemy){
+            player.getHit();
+            if(player.health == 0){
+                player.setVisible(false);
+            }
+        }
+        , null, this)
+    
+    this.hp = this.add.text(20, config.height-50, this.player.health, {
+        font: "25px Arial",
+    });
 }
 
 
@@ -60,7 +79,7 @@ update() {
         beam.update();
     }
 
-    this.player()
+    this.hp.setText(this.player.health)
 }
 
 hitEnemy(Enemy, beam){

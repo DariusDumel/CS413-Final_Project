@@ -6,15 +6,12 @@ class Beam extends Phaser.GameObjects.Sprite{
         super(scene, x, y, "pew");
 
         scene.add.existing(this);
-
-        scene.physics.world.enableBody(this);
-        this.body.setVelocityY(-500);
-
         scene.projectiles.add(this);
     }
 
     update(){
-        
+        this.y -= gameSettings.gameSpeed*4
+
         if(this.y < 32){
             this.destroy();
         }

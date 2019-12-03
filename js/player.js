@@ -37,17 +37,21 @@ class Player extends Phaser.GameObjects.Sprite{
     }
 
     update(){
+        if(this.visible)
+        {
+            if (Phaser.Input.Keyboard.JustDown(this.controls.SPACE)) {
+                this.shootBeam();
+            }
 
-    if (Phaser.Input.Keyboard.JustDown(this.controls.SPACE)) {
-        this.shootBeam();
-    }
-
-    this.movePlayerManager();
-
+            this.movePlayerManager();
+        }
     }
 
     shootBeam() {
         var beam = new Beam(this.scene);
     }
 
+    getHit() {
+        this.health -= 10;
+    }
 }
